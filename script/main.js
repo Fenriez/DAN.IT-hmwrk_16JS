@@ -1,13 +1,26 @@
-let theme = 'day';
+if (!localStorage.theme) {
+    localStorage.theme = 'day';
+} else {
+    changeTheme();
+}
 
 $('.change_theme_btn').on('click', function() {
-    $('a, p, h1, h2, h3, h4, h5, h6').css({
-        filter: 'invert(100%)'
-    });
-    if (theme == 'day') {
-        theme = 'night';
-        
+    if (localStorage.theme == 'day') {
+        localStorage.theme = 'night';
     } else {
-        theme = 'day';
-    }
+        localStorage.theme = 'day';
+    };
+    changeTheme();
 });
+
+function changeTheme() {
+    if (localStorage.theme == 'night') {
+        $('.wrapper, img').css({
+            filter: 'invert(100%)'
+        });
+    } else {
+        $('.wrapper, img').css({
+            filter: 'invert(0%)'
+        });
+    };
+};
